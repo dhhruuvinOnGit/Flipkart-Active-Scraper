@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+    <link rel="icon" href="https://img.freepik.com/free-photo/shopping-cart-minus-front-side_187299-40120.jpg?ga=GA1.1.214538629.1721577813&semt=sph">
+    <title>Flipkart Activ Search</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+        .ubuntu-regular {
+            font-family: "Ubuntu", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            }
+        body {
+            font-family: "Ubuntu", sans-serif;
+            background-color: #f0f0f0;
+            background-image: url('https://media.licdn.com/dms/image/C561BAQEEwf5afrHo-Q/company-background_10000/0/1608389264465/flipkart_support_cover?e=2147483647&v=beta&t=Hl7W5W81mg6nlLo8fyRVwmU0YOsvz7raLOC9PY-plEQ');
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: #333;
+            transition: background-color 0.3s, color 0.3s;
+            padding: 20px;
+            text-align: center;
+            position: relative; 
+        }
+        form {
+            max-width: 380px;
+            height: 300px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 6px;
+            color: #000;
+        }
+        input[type="text"], input[type="number"] {
+            width: calc(100% - 20px);
+            padding: 8px;
+            margin-bottom: 30px;
+            border: 1px solid #000000;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+        input[type="submit"] {
+            background-color: #ee9b00; 
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            width: calc(100% - 5px);
+        }
+        input[type="submit"]:hover {
+            background-color: #d17002;
+        }
+
+    </style>
+</head>
+<body>
+    <h2 style="font-size: 36px; color: #dddd00;">Flipkart Activ Search</h2>
+    <form method="POST" action="/">
+        <label for="keyword">Enter Product Keyword:</label><br>
+        <input type="text" id="keyword" name="keyword" required><br>
+        <label for="num_pages">Enter Number of Pages to Scrape:</label><br>
+        <input type="number" id="num_pages" name="num_pages" min="1" required><br><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

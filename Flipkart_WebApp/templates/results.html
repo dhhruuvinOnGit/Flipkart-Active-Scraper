@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+    <link rel="icon" href="https://img.freepik.com/free-photo/shopping-cart-minus-front-side_187299-40120.jpg?ga=GA1.1.214538629.1721577813&semt=sph">
+    <title>Flipkart Activ Search</title>
+    <!-- Include Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+        .ubuntu-regular {
+            font-family: "Ubuntu", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            }
+        body {
+            font-family: "Ubuntu", sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+            padding: 20px;
+            margin: 0;
+        }
+        h1, h2 {
+            color: #161541;
+        }
+        h3 {
+            color: #333
+        }
+        .summary {
+            background-color: #fff;
+            padding-top: 6px;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .summary table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .summary table, .summary th, .summary td {
+            border: 1px solid #ddd;
+        }
+        .summary th, .summary td {
+            padding: 8px;
+            text-align: left;
+            font-size: 14px;
+        }
+        .summary th {
+            background-color: #f2f2f2;
+        }
+        .plot-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .plot-container .plot {
+            flex: 1;
+            min-width: 45%;
+            max-width: 50%; /* Ensures plots don't overflow */
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            overflow: hidden; /* Prevents overflow of plot content */
+        }
+        @media (max-width: 768px) {
+            .plot-container .plot {
+                min-width: 100%;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Flipkart Activ Results</h1>
+
+    <!-- Display Summary Statistics -->
+    <div class="summary">
+        <h2>Results for "{{ keyword }}"</h2>
+        <p>Total Products Scraped: {{ total_products }}</p>
+        <p>Total Pages Searched: {{ num_pages }}</p>
+        <h3 style="text-decoration: underline;">Summary Statistics</h3>
+        <table>
+            <tr>
+                <th>Metric</th>
+                <th>Brand</th>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Stars</th>
+                <th>Delivery</th>
+                <th>Ratings</th>
+                <th>Discount</th>
+            </tr>
+            <tr>
+                <td style='font-weight: bolder;'>Cheapest product</td>
+                <td>{{ summary_stats.cheapest_product.brand_name }}</td>
+                <td>{{ summary_stats.cheapest_product.product_name }}</td>
+                <td>{{ summary_stats.cheapest_product.price }}</td>
+                <td>{{ summary_stats.cheapest_product.stars }}</td>
+                <td>{{ summary_stats.cheapest_product.delivery }}</td>
+                <td>{{ summary_stats.cheapest_product.ratings }}</td>
+                <td>{{ summary_stats.cheapest_product.discount }}</td>
+            </tr>
+            <tr>
+                <td style='font-weight: bolder;'>Costliest product</td>
+                <td>{{ summary_stats.costliest_product.brand_name }}</td>
+                <td>{{ summary_stats.costliest_product.product_name }}</td>
+                <td>{{ summary_stats.costliest_product.price }}</td>
+                <td>{{ summary_stats.costliest_product.stars }}</td>
+                <td>{{ summary_stats.costliest_product.delivery }}</td>
+                <td>{{ summary_stats.costliest_product.ratings }}</td>
+                <td>{{ summary_stats.costliest_product.discount }}</td>
+            </tr>
+            <tr>
+                <td style='font-weight: bolder;'>Highest rated product</td>
+                <td>{{ summary_stats.highest_rated_product.brand_name }}</td>
+                <td>{{ summary_stats.highest_rated_product.product_name }}</td>
+                <td>{{ summary_stats.highest_rated_product.price }}</td>
+                <td>{{ summary_stats.highest_rated_product.stars }}</td>
+                <td>{{ summary_stats.highest_rated_product.delivery }}</td>
+                <td>{{ summary_stats.highest_rated_product.ratings }}</td>
+                <td>{{ summary_stats.highest_rated_product.discount }}</td>
+            </tr>
+            <tr>
+                <td style='font-weight: bolder;'>Least discounted product</td>
+                <td>{{ summary_stats.least_discounted_product.brand_name }}</td>
+                <td>{{ summary_stats.least_discounted_product.product_name }}</td>
+                <td>{{ summary_stats.least_discounted_product.price }}</td>
+                <td>{{ summary_stats.least_discounted_product.stars }}</td>
+                <td>{{ summary_stats.least_discounted_product.delivery }}</td>
+                <td>{{ summary_stats.least_discounted_product.ratings }}</td>
+                <td>{{ summary_stats.least_discounted_product.discount }}</td>
+            </tr>
+            <tr>
+                <td style='font-weight: bolder;'>Highest discounted product</td>
+                <td>{{ summary_stats.highest_discounted_product.brand_name }}</td>
+                <td>{{ summary_stats.highest_discounted_product.product_name }}</td>
+                <td>{{ summary_stats.highest_discounted_product.price }}</td>
+                <td>{{ summary_stats.highest_discounted_product.stars }}</td>
+                <td>{{ summary_stats.highest_discounted_product.delivery }}</td>
+                <td>{{ summary_stats.highest_discounted_product.ratings }}</td>
+                <td>{{ summary_stats.highest_discounted_product.discount }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- First Row -->
+    <div class="plot-container">
+        <div class="plot" id="ct_of_prod_plot">
+            {{ ct_of_prod_plot | safe }}
+        </div>
+        <div class="plot" id="avg_stars_plot">
+            {{ avg_stars_plot | safe }}
+        </div>
+    </div>
+
+    <!-- Second Row -->
+    <div class="plot-container">
+        <div class="plot" id="avg_reviews_plot">
+            {{ avg_reviews_plot | safe }}
+        </div>
+        <div class="plot" id="brand_ratings_plot">
+            {{ brand_ratings_plot | safe }}
+        </div>
+    </div>
+
+    <!-- Third Row -->
+    <div class="plot-container">
+        <div class="plot" id="discount_counts_plot">
+            {{ discount_counts_plot | safe }}
+        </div>
+        <div class="plot" id="avg_disc_plot">
+            {{ avg_disc_plot | safe }}
+        </div>
+    </div>
+
+</body>
+</html>

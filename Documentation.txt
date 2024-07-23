@@ -1,0 +1,37 @@
+Multipage-URL-Input.ipynb : Jupyter notebook for scraping data based on URL provided by user and the number of pages.
+E.g., Click on "Run All" -> Enter URL of the product you searched for -> Enter number of pages you want to scrape -> Wait until loading -> Output
+
+-------------------------------------------------------------------------------
+
+User-Input-Keyword-Analysis.ipynb : Jupyter notebook for scraping data based on the keyword and number of pages provided by user.
+E.g., Click on "Run All" -> Enter keyword of your choice -> Enter number of pages you want to scrape -> Wait until loading -> Output with visuals
+
+-------------------------------------------------------------------------------
+
+Flipkart_Web
+|
+|---templates
+|	|---index.html
+|	|---results.html
+|
+|---app.py
+
+index.html : Frontend for input form of keyword and number of pages.
+
+results.html : Frontend for showcasing output and graphs based on the form input.
+
+app.py : Python flask code for web app with code similar to "User-Input-Keyword-Analysis.ipynb" file.
+
+How to run?
+Run the python file.
+Click on the localhost link to redirect to webpage.
+Submit the form.
+Wait till data is fetched.
+New page with Summary and Visuals will be opened after data fetching is completed.
+The data would also be stored in a csv file. The will be overwritten after every search.
+
+-------------------------------------------------------------------------------
+
+flipkart_viz.pbix : Microsoft PowerBI file.
+This dashboard provides similar visualization to the web app.
+It collects data from the csv file created after running the python file.

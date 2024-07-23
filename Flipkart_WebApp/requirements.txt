@@ -3,6 +3,6 @@ pandas
 numpy
 requests
 bs4
-urllib
+urllib3 == 1.26.16
 plotly
 re
